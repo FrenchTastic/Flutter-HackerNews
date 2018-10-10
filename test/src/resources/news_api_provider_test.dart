@@ -7,7 +7,6 @@ import 'package:http/testing.dart';
 void main() {
   test('FetchTopIds return a list of ids', () async {
     // setup of test case
-    final sum = 1 + 3;
     final newsApi = NewsApiProvider();
     newsApi.client = MockClient((request) async {
       return Response(json.encode([1, 2, 3, 4]), 200);
