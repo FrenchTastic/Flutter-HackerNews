@@ -17,8 +17,8 @@ class ItemModel {
 
   ItemModel.fromJson(Map<String, dynamic> parsedJson)
     : id = parsedJson["id"],
-      deleted = parsedJson["deleted"],
-      type = parsedJson["type"],
+      deleted = parsedJson["deleted"] ?? false,
+      type = parsedJson["type"] ?? false,
       by = parsedJson["by"],
       time = parsedJson["time"],
       text = parsedJson["text"],
