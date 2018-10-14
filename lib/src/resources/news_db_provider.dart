@@ -18,7 +18,7 @@ class NewsDbProvider implements Source, Cache {
     final path = join(documentsDirectory.path, "items.db");
     db = await openDatabase(
       path,
-      version: 1,
+      version: 4,
       onCreate: (Database newDb, int version) {
         newDb.execute("""
           CREATE TABLE Items
@@ -33,6 +33,8 @@ class NewsDbProvider implements Source, Cache {
               deleted INTEGER,
               url TEXT,
               score INTEGER,
+              time TEXT,
+              title TEXT,
               descendants INTEGER
             )
         """);
@@ -60,7 +62,11 @@ class NewsDbProvider implements Source, Cache {
   }
 
   Future<int> addItem(ItemModel item) {
-    return db.insert("Items", item.toMap());
+    return db.insert("Items", item.toMap(), conflictAlgorithm: ConflictAlgorithm.ignore);
+  }
+
+  Future<int> clear() {
+    return db.delete("Items");
   }
 }
 
