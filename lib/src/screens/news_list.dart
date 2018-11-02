@@ -7,8 +7,6 @@ import '../widgets/refresh.dart';
 class NewsList extends StatelessWidget {
   Widget build(context) {
     final bloc = StoriesProvider.of(context);
-    // THIS IS BAD !!!!!
-    bloc.fetchTopds();
     return Scaffold(
       appBar: AppBar(
         title: Text('Top News'),
